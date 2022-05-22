@@ -371,13 +371,10 @@ class LinkedBST(AbstractCollection):
         with open(path, "r") as file:
             for line in file:
                 lst_of_words.append(line.strip("\n"))
-        """час пошуку 10000 випадкових слів у впорядкованому за абеткою словнику (пошук у списку слів з використанням методів вбудованого типу list).
- час пошуку 10000 випадкових слів у словнику, який представлений у вигляді бінарного дерева пошуку. Бінарне дерево пошуку будується на основі послідовного додавання в дерево слів зі словника, який впорядкований за абеткою.
-час пошуку 10000 випадкових слів у словнику, який представлений у вигляді бінарного дерева пошуку. Бінарне дерево пошуку будується на основі послідовного додавання в дерево слів зі словника який не впорядкований за абеткою (слова у дерево додаються випадковим чином).
-час пошуку 10000 випадкових слів у словнику, який представлений у вигляді бінарного дерева пошуку після його балансування."""
+
         print("time for finding 10000 random words:")
         time_since = time.time()
-        for _ in range(992):
+        for _ in range(10000):
             word = random.choice(lst_of_words)
             i = lst_of_words.index(word)
         time_since = time.time() - time_since
@@ -387,7 +384,7 @@ class LinkedBST(AbstractCollection):
         for word in lst_of_words:
             bin_tree.add(word)
         time_since = time.time()
-        for _ in range(992):
+        for _ in range(10000):
             word = random.choice(lst_of_words)
             i = bin_tree.find(word)
         time_since = time.time() - time_since
@@ -399,7 +396,7 @@ class LinkedBST(AbstractCollection):
         for word in lst_words:
             bin_tree.add(word)
         time_since = time.time()
-        for _ in range(992):
+        for _ in range(10000):
             word = random.choice(lst_of_words)
             i = bin_tree.find(word)
         time_since = time.time() - time_since
@@ -407,7 +404,7 @@ class LinkedBST(AbstractCollection):
 
         bin_tree.rebalance()
         time_since = time.time()
-        for _ in range(992):
+        for _ in range(10000):
             word = random.choice(lst_of_words)
             i = bin_tree.find(word)
         time_since = time.time() - time_since
@@ -415,4 +412,6 @@ class LinkedBST(AbstractCollection):
 
 
 tree = LinkedBST()
+# it can't use files with more than 992 words, because in python is limited recursive steps,
+# so it's used only a part from all dictionary
 tree.demo_bst("word1.txt")
